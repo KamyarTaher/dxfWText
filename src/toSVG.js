@@ -295,6 +295,13 @@ const bezier = (entity) => {
   return transformBoundingBoxAndElement(bbox, element, entity.transforms)
 }
 
+
+const text = (entity) => {
+    const bbox = new Box2()
+    const element = `<text x="${entity.x}" y="${entity.y}" rotate="${entity.rotation}"  font-size="${entity.textHeight}px">${entity.string}</text>`
+    return transformBoundingBoxAndElement(bbox, element, entity.transforms)
+  }
+
 /**
  * Switcth the appropriate function on entity type. CIRCLE, ARC and ELLIPSE
  * produce native SVG elements, the rest produce interpolated polylines.
@@ -321,6 +328,8 @@ const entityToBoundsAndElement = (entity) => {
     }
     case 'LINE':
     case 'LWPOLYLINE':
+    case 'TEXT':
+     return text(entity)
     case 'POLYLINE': {
       return polyline(entity)
     }
