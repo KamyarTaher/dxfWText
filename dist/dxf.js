@@ -4657,7 +4657,13 @@ var bezier = function bezier(entity) {
   return (0, _transformBoundingBoxAndElement["default"])(bbox, element, entity.transforms);
 };
 
-var text = function text(entity) {
+var textRend = function textRend(entity) {
+  if (entity.type !== 'TEXT') {
+    // console.log('how the fuck did this happen?', entity.type)
+    return 0;
+  }
+
+  console.log(entity);
   var bbox = new _vecks.Box2();
   var element = "<text x=\"".concat(entity.x, "\" y=\"").concat(entity.y, "\" rotate=\"").concat(entity.rotation, "\"  font-size=\"").concat(entity.textHeight, "px\">").concat(entity.string, "</text>");
   return (0, _transformBoundingBoxAndElement["default"])(bbox, element, entity.transforms);
@@ -4669,6 +4675,10 @@ var text = function text(entity) {
 
 
 var entityToBoundsAndElement = function entityToBoundsAndElement(entity) {
+  if (entity.type === 'TEXT') {
+    return textRend(entity);
+  }
+
   switch (entity.type) {
     case 'CIRCLE':
       return circle(entity);
@@ -4698,9 +4708,6 @@ var entityToBoundsAndElement = function entityToBoundsAndElement(entity) {
 
     case 'LINE':
     case 'LWPOLYLINE':
-    case 'TEXT':
-      return text(entity);
-
     case 'POLYLINE':
       {
         return polyline(entity);
