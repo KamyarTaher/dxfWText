@@ -302,7 +302,9 @@ const textRend = (entity) => {
   }
   console.log(entity)
   const bbox = new Box2()
-  const element = `<text x="${entity.x}" y="${entity.y}" rotate="${entity.rotation}"  font-size="${entity.textHeight}px">${entity.string}</text>`
+  const element = `<text x="${entity.x}" y="${entity.y}" rotate="${
+    entity.rotation + 180
+  }"  font-size="${entity.textHeight}px">${entity.string}</text>`
   return transformBoundingBoxAndElement(bbox, element, entity.transforms)
 }
 
