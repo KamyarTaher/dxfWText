@@ -4736,7 +4736,8 @@ var _default = function _default(parsed) {
         acc.bbox.expandByPoint(bbox.max);
       }
 
-      acc.elements.push("<g stroke=\"".concat((0, _rgbToColorAttribute["default"])(rgb), "\">").concat(element, "</g>"));
+      var fillingStyle = entity.type === 'TEXT' ? "fill=\"".concat((0, _rgbToColorAttribute["default"])(rgb), "\"") : "stroke=\"".concat((0, _rgbToColorAttribute["default"])(rgb), "\"");
+      acc.elements.push("<g ".concat(fillingStyle, " >").concat(element, "</g>"));
     }
 
     return acc;
@@ -4746,7 +4747,7 @@ var _default = function _default(parsed) {
   }),
       elements = _entities$reduce.elements;
 
-  return "\n  <g stroke=\"#000000\" stroke-width=\"0.1%\" fill=\"none\" transform=\"matrix(1,0,0,-1,0,0)\">\n    ".concat(elements.join('\n'), "\n  </g>\n");
+  return "\n  <g transform=\"matrix(1,0,0,-1,0,0)\">\n    ".concat(elements.join('\n'), "\n  </g>\n");
 }; // npm run test &&
 
 /* 

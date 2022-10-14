@@ -362,9 +362,11 @@ export default (parsed) => {
           acc.bbox.expandByPoint(bbox.min)
           acc.bbox.expandByPoint(bbox.max)
         }
-        acc.elements.push(
-          `<g stroke="${rgbToColorAttribute(rgb)}">${element}</g>`,
-        )
+        const fillingStyle =
+          entity.type === 'TEXT'
+            ? `fill="${rgbToColorAttribute(rgb)}"`
+            : `stroke="${rgbToColorAttribute(rgb)}"`
+        acc.elements.push(`<g ${fillingStyle} >${element}</g>`)
       }
       return acc
     },
@@ -375,7 +377,7 @@ export default (parsed) => {
   )
 
   return `
-  <g stroke="#000000" stroke-width="0.1%" fill="none" transform="matrix(1,0,0,-1,0,0)">
+  <g transform="matrix(1,0,0,-1,0,0)">
     ${elements.join('\n')}
   </g>
 `
