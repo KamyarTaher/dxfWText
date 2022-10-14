@@ -4728,12 +4728,12 @@ var _default = function _default(parsed) {
     var boundsAndElement = entityToBoundsAndElement(entity); // Ignore entities like MTEXT that don't produce SVG elements
 
     if (boundsAndElement) {
-      var _bbox = boundsAndElement.bbox,
+      var bbox = boundsAndElement.bbox,
           element = boundsAndElement.element; // Ignore invalid bounding boxes
 
-      if (_bbox.valid) {
-        acc.bbox.expandByPoint(_bbox.min);
-        acc.bbox.expandByPoint(_bbox.max);
+      if (bbox.valid) {
+        acc.bbox.expandByPoint(bbox.min);
+        acc.bbox.expandByPoint(bbox.max);
       }
 
       acc.elements.push("<g stroke=\"".concat((0, _rgbToColorAttribute["default"])(rgb), "\">").concat(element, "</g>"));
@@ -4744,22 +4744,22 @@ var _default = function _default(parsed) {
     bbox: new _vecks.Box2(),
     elements: []
   }),
-      bbox = _entities$reduce.bbox,
       elements = _entities$reduce.elements;
 
-  var viewBox = bbox.valid ? {
-    x: bbox.min.x,
-    y: -bbox.max.y,
-    width: bbox.max.x - bbox.min.x,
-    height: bbox.max.y - bbox.min.y
-  } : {
-    x: 0,
-    y: 0,
-    width: 0,
-    height: 0
-  };
-  return "<?xml version=\"1.0\"?>\n<svg\n  xmlns=\"http://www.w3.org/2000/svg\"\n  xmlns:xlink=\"http://www.w3.org/1999/xlink\" version=\"1.1\"\n  preserveAspectRatio=\"xMinYMin meet\"\n  viewBox=\"".concat(viewBox.x, " ").concat(viewBox.y, " ").concat(viewBox.width, " ").concat(viewBox.height, "\"\n  width=\"100%\" height=\"100%\"\n>\n  <g stroke=\"#000000\" stroke-width=\"0.1%\" fill=\"none\" transform=\"matrix(1,0,0,-1,0,0)\">\n    ").concat(elements.join('\n'), "\n  </g>\n</svg>");
-};
+  return "\n  <g stroke=\"#000000\" stroke-width=\"0.1%\" fill=\"none\" transform=\"matrix(1,0,0,-1,0,0)\">\n    ".concat(elements.join('\n'), "\n  </g>\n");
+}; // npm run test &&
+
+/* 
+<?xml version="1.0"?>
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+  preserveAspectRatio="xMinYMin meet"
+  viewBox="${viewBox.x} ${viewBox.y} ${viewBox.width} ${viewBox.height}"
+  width="100%" height="100%"
+> 
+</svg> */
+
 
 exports["default"] = _default;
 },{"./denormalise":4,"./entityToPolyline":5,"./getRGBForEntity":6,"./util/logger":41,"./util/rgbToColorAttribute":42,"./util/rotate":43,"./util/toPiecewiseBezier":45,"./util/transformBoundingBoxAndElement":46,"vecks":163}],37:[function(require,module,exports){

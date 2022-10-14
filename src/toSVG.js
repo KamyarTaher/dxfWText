@@ -350,7 +350,7 @@ const entityToBoundsAndElement = (entity) => {
 
 export default (parsed) => {
   const entities = denormalise(parsed)
-  const { bbox, elements } = entities.reduce(
+  const { elements } = entities.reduce(
     (acc, entity, i) => {
       const rgb = getRGBForEntity(parsed.tables.layers, entity)
       const boundsAndElement = entityToBoundsAndElement(entity)
@@ -374,29 +374,21 @@ export default (parsed) => {
     },
   )
 
-  const viewBox = bbox.valid
-    ? {
-        x: bbox.min.x,
-        y: -bbox.max.y,
-        width: bbox.max.x - bbox.min.x,
-        height: bbox.max.y - bbox.min.y,
-      }
-    : {
-        x: 0,
-        y: 0,
-        width: 0,
-        height: 0,
-      }
-  return `<?xml version="1.0"?>
+  return `
+  <g stroke="#000000" stroke-width="0.1%" fill="none" transform="matrix(1,0,0,-1,0,0)">
+    ${elements.join('\n')}
+  </g>
+`
+}
+
+// npm run test &&
+/* 
+<?xml version="1.0"?>
 <svg
   xmlns="http://www.w3.org/2000/svg"
   xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
   preserveAspectRatio="xMinYMin meet"
   viewBox="${viewBox.x} ${viewBox.y} ${viewBox.width} ${viewBox.height}"
   width="100%" height="100%"
->
-  <g stroke="#000000" stroke-width="0.1%" fill="none" transform="matrix(1,0,0,-1,0,0)">
-    ${elements.join('\n')}
-  </g>
-</svg>`
-}
+> 
+</svg> */
