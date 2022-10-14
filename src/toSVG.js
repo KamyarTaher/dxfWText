@@ -305,9 +305,7 @@ const textRend = (entity) => {
   const element = `<text x="${entity.x}" y="${-entity.y}" font-size="${
     entity.textHeight
   }px" transform="matrix(1,0,0,-1,0,0) rotate(${-entity.rotation}
-    ,${entity.x},${-entity.y})"  dominant-baseline="central">${
-    entity.string
-  }</text>`
+    ,${entity.x},${-entity.y})">${entity.string}</text>`
 
   return transformBoundingBoxAndElement(bbox, element, entity.transforms)
 }
