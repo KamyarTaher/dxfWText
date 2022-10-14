@@ -365,7 +365,7 @@ export default (parsed) => {
         const fillingStyle =
           entity.type === 'TEXT'
             ? `fill="${rgbToColorAttribute(rgb)}"`
-            : `stroke="${rgbToColorAttribute(rgb)}"`
+            : `stroke="${rgbToColorAttribute(rgb)}" fill="none"`
         acc.elements.push(`<g ${fillingStyle} >${element}</g>`)
       }
       return acc

@@ -4736,7 +4736,7 @@ var _default = function _default(parsed) {
         acc.bbox.expandByPoint(bbox.max);
       }
 
-      var fillingStyle = entity.type === 'TEXT' ? "fill=\"".concat((0, _rgbToColorAttribute["default"])(rgb), "\"") : "stroke=\"".concat((0, _rgbToColorAttribute["default"])(rgb), "\"");
+      var fillingStyle = entity.type === 'TEXT' ? "fill=\"".concat((0, _rgbToColorAttribute["default"])(rgb), "\"") : "stroke=\"".concat((0, _rgbToColorAttribute["default"])(rgb), "\" fill=\"none\"");
       acc.elements.push("<g ".concat(fillingStyle, " >").concat(element, "</g>"));
     }
 
