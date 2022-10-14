@@ -302,11 +302,9 @@ const textRend = (entity) => {
   }
   console.log(entity)
   const bbox = new Box2()
-  const element = `<text x="${entity.x}" y="${-entity.y}" rotate="${
-    entity.rotation
-  }"  font-size="${
+  const element = `<text x="${entity.x}" y="${-entity.y}" font-size="${
     entity.textHeight
-  }px" transform="matrix(1,0,0,-1,0,0)  rotate(${-entity.rotation}
+  }px" transform="matrix(1,0,0,-1,0,0) rotate(${-entity.rotation}
     ,${entity.x},${-entity.y})"  dominant-baseline="central">${
     entity.string
   }</text>`
