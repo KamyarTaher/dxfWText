@@ -307,7 +307,7 @@ const textRend = (entity) => {
   }"  font-size="${
     entity.textHeight
   }px" transform="matrix(1,0,0,-1,0,0)  rotate(${-entity.rotation}
-    ,${entity.x},${entity.y})"  dominant-baseline="central">${
+    ,${entity.x},${-entity.y})"  dominant-baseline="central">${
     entity.string
   }</text>`
 

@@ -4665,7 +4665,7 @@ var textRend = function textRend(entity) {
 
   console.log(entity);
   var bbox = new _vecks.Box2();
-  var element = "<text x=\"".concat(entity.x, "\" y=\"").concat(-entity.y, "\" rotate=\"").concat(entity.rotation, "\"  font-size=\"").concat(entity.textHeight, "px\" transform=\"matrix(1,0,0,-1,0,0)  rotate(").concat(-entity.rotation, "\n    ,").concat(entity.x, ",").concat(entity.y, ")\"  dominant-baseline=\"central\">").concat(entity.string, "</text>");
+  var element = "<text x=\"".concat(entity.x, "\" y=\"").concat(-entity.y, "\" rotate=\"").concat(entity.rotation, "\"  font-size=\"").concat(entity.textHeight, "px\" transform=\"matrix(1,0,0,-1,0,0)  rotate(").concat(-entity.rotation, "\n    ,").concat(entity.x, ",").concat(-entity.y, ")\"  dominant-baseline=\"central\">").concat(entity.string, "</text>");
   return (0, _transformBoundingBoxAndElement["default"])(bbox, element, entity.transforms);
 };
 /**
