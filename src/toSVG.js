@@ -77,6 +77,8 @@ const colorTable = [
   '#E85EBE',
 ]
 
+const uniqueIdMapping = []
+
 const addFlipXIfApplicable = (entity, { bbox, element }) => {
   if (entity.extrusionZ === -1) {
     return {
@@ -428,9 +430,21 @@ export default (parsed) => {
           acc.bbox.expandByPoint(bbox.min)
           acc.bbox.expandByPoint(bbox.max)
         }
-        const layerColor = entity.layer
-          ? colorTable[entity.layer]
-          : rgbToColorAttribute(rgb)
+        // check if entity.layer exist in uniqueIdMapping and return index, if not add it
+        let layerColor
+        if (entity.layer) {
+          let layerIndex = uniqueIdMapping.findIndex((x) => x === entity.layer)
+          if (layerIndex === -1) {
+            uniqueIdMapping.push(entity.layer)
+            layerIndex = uniqueIdMapping.length - 1
+          }
+          layerColor = colorTable[layerIndex]
+        } else {
+          layerColor = rgbToColorAttribute(rgb)
+        }
+        if (entity.lineTypeName) {
+          console.log(entity.lineTypeName)
+        }
 
         const fillingStyle =
           entity.type === 'TEXT'
